@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مِحراب - لوحة المسلم الذكية</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-brand">
+        <div class="header-logo">م</div>
+        <div class="header-title">
+          <h1>مِحراب</h1>
+          <p>لوحة المسلم الذكية</p>
+        </div>
+      </div>
+      <div class="header-date" id="headerDate">
+        <div class="date-main" id="dateGregorian">--</div>
+        <div class="date-hijri" id="dateHijri">--</div>
+      </div>
+    </header>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+
+      <!-- Card 1: Tasbih Counter -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title gold">
+            <div class="icon">📿</div>
+            <span>مُسَبِّحَة</span>
+          </div>
+          <span class="status-dot gold"></span>
+        </div>
+        <div class="tasbih-display">
+          <div class="tasbih-count" id="tasbihCount">0</div>
+          <div class="tasbih-label">استغفر الله العظيم</div>
+          <div class="tasbih-progress-container">
+            <div class="tasbih-progress" id="tasbihProgress"></div>
+          </div>
+          <div class="tasbih-goal-text" id="tasbihGoalText">الهدف: 100 | المتبقي: 100</div>
+          <div class="tasbih-actions">
+            <button class="btn btn-primary btn-icon" id="tasbihIncrement" title="زيادة">+</button>
+            <button class="btn btn-secondary" id="tasbihReset">إعادة</button>
+          </div>
+          <div class="tasbih-goal-input">
+            <input type="number" id="tasbihGoalInput" value="100" min="1" max="99999" placeholder="الهدف">
+            <button class="btn btn-secondary btn-sm" id="tasbihGoalSet">تحديد الهدف</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Prayer Times -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title teal">
+            <div class="icon">🕌</div>
+            <span>أوقات الصلاة</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="prayerRefresh" title="تحديث الموقع">تحديث</button>
+        </div>
+        <div id="prayerStatus">
+          <div class="spinner"></div>
+          <p style="text-align:center;color:var(--text-muted);">جاري تحديد موقعك...</p>
+        </div>
+        <div class="prayer-grid" id="prayerTimesContainer"></div>
+        <div class="prayer-countdown">
+          <div class="countdown-title">متبقي على صلاة</div>
+          <div class="countdown-next" id="prayerNextName">--</div>
+          <div class="countdown-timer" id="prayerCountdownTimer">--:--:--</div>
+          <div class="prayer-location" id="prayerLocation"></div>
+        </div>
+      </div>
+
+      <!-- Card 3: Ayah of the Day (Full Width) -->
+      <div class="card full-width">
+        <div class="card-header">
+          <div class="card-title rose">
+            <div class="icon">📖</div>
+            <span>آية اليوم</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="ayahRefresh">تغيير</button>
+        </div>
+        <div class="ayah-card">
+          <div class="ayah-text" id="ayahArabic"></div>
+          <div class="ayah-translation" id="ayahTranslation"></div>
+          <div class="ayah-reference" id="ayahReference"></div>
+          <div class="ayah-tafsir" id="ayahTafsir"></div>
+        </div>
+      </div>
+
+      <!-- Card 4: Quran Viewer -->
+      <div class="card full-width">
+        <div class="card-header">
+          <div class="card-title emerald">
+            <div class="icon">📖</div>
+            <span>المصحف التفاعلي</span>
+          </div>
+          <button class="quran-bookmark" id="quranBookmark">
+            <span>🏷️</span> احفظ هذا الموضع
+          </button>
+        </div>
+        <div class="quran-controls">
+          <select class="quran-surah-select" id="quranSurahSelect"></select>
+          <div class="quran-navigation">
+            <button class="btn btn-secondary btn-sm" id="quranPrev">← السابق</button>
+            <span class="quran-verse-number" id="quranVerseNumber">--</span>
+            <button class="btn btn-secondary btn-sm" id="quranNext">التالي →</button>
+          </div>
+        </div>
+        <div class="quran-display">
+          <div class="quran-ayah-text" id="quranAyahText"></div>
+          <div class="quran-translation" id="quranTranslation"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align:center;padding:30px 0 20px;color:var(--text-muted);font-size:13px;">
+      <p>مِحراب &copy; 2026 | <span style="color:var(--accent-gold);">"وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ"</span></p>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
